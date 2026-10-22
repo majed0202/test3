@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>لوحة التحكم | إدارة الموقع</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <!-- ===== Login ===== -->
+  <section id="authView" class="auth-view" hidden>
+    <div class="auth-card">
+      <h1>لوحة التحكم</h1>
+      <p class="muted">سجّل الدخول لإدارة معلومات موقعك وصوره.</p>
+
+      <form id="loginForm" novalidate>
+        <div class="field">
+          <label for="loginEmail">البريد الإلكتروني</label>
+          <input id="loginEmail" type="email" autocomplete="username" dir="ltr" required>
+        </div>
+        <div class="field">
+          <label for="loginPassword">كلمة المرور</label>
+          <input id="loginPassword" type="password" autocomplete="current-password" dir="ltr" required>
+        </div>
+        <p class="error" id="loginError" role="alert"></p>
+        <button type="submit" class="btn btn-primary btn-block">دخول</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== Dashboard ===== -->
+  <section id="appView" hidden>
+    <header class="topbar">
+      <div class="topbar-start">
+        <strong class="app-title">لوحة التحكم</strong>
+        <label class="site-picker">
+          <span class="sr-only">اختر الموقع</span>
+          <select id="siteSelect"></select>
+        </label>
+      </div>
+      <div class="topbar-end">
+        <span id="userEmail" class="muted" dir="ltr"></span>
+        <button id="logoutBtn" class="btn btn-ghost btn-sm" type="button">تسجيل الخروج</button>
+      </div>
+    </header>
+
+    <nav class="tabs" role="tablist">
+      <button class="tab is-active" role="tab" aria-selected="true" data-tab="contacts">معلومات التواصل</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="images">الصور</button>
+    </nav>
+
+    <main class="content">
+
+      <!-- Contacts -->
+      <section id="tab-contacts" class="panel" role="tabpanel">
+        <form id="contactForm" novalidate>
+          <div class="panel-head">
+            <div>
+              <h2>معلومات التواصل</h2>
+              <p class="muted">اختر "مشترك" لتظهر المعلومات في كل اللغات، أو اختر لغة محددة لتخصيصها.</p>
+            </div>
+            <div class="field lang-field">
+              <label for="contactLang">نطاق التعديل</label>
+              <select id="contactLang">
+                <option value="all">مشترك لكل اللغات</option>
+                <option value="ar">العربية</option>
+                <option value="en">English</option>
+                <option value="tr">Türkçe</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="field">
+              <label for="f-phone">رقم الهاتف</label>
+              <input id="f-phone" name="phone" dir="ltr" inputmode="tel" maxlength="25">
+              <small class="error" data-err="phone"></small>
+            </div>
+            <div class="field">
+              <label for="f-whatsapp">رقم واتساب</label>
+              <input id="f-whatsapp" name="whatsapp" dir="ltr" inputmode="tel" maxlength="20" placeholder="+90 5xx xxx xx xx">
+              <small class="error" data-err="whatsapp"></small>
+            </div>
+            <div class="field">
+              <label for="f-email">البريد الإلكتروني</label>
+              <input id="f-email" name="email" type="email" dir="ltr" maxlength="120">
+              <small class="error" data-err="email"></small>
+            </div>
+            <div class="field">
+              <label for="f-address">عنوان الشركة</label>
+              <input id="f-address" name="address" maxlength="200">
+              <small class="error" data-err="address"></small>
+            </div>
+          </div>
+
+          <h3 class="section-label">روابط التواصل الاجتماعي (اتركها فارغة إن لم تكن موجودة)</h3>
+          <div class="grid-2">
+            <div class="field">
+              <label for="f-instagram">إنستغرام</label>
+              <input id="f-instagram" name="instagram" type="url" dir="ltr" maxlength="200" placeholder="https://">
+              <small class="error" data-err="instagram"></small>
+            </div>
+            <div class="field">
+              <label for="f-facebook">فيسبوك</label>
+              <input id="f-facebook" name="facebook" type="url" dir="ltr" maxlength="200" placeholder="https://">
+              <small class="error" data-err="facebook"></small>
+            </div>
+            <div class="field">
+              <label for="f-x">X</label>
+              <input id="f-x" name="x" type="url" dir="ltr" maxlength="200" placeholder="https://">
+              <small class="error" data-err="x"></small>
+            </div>
+            <div class="field">
+              <label for="f-linkedin">لينكدإن</label>
+              <input id="f-linkedin" name="linkedin" type="url" dir="ltr" maxlength="200" placeholder="https://">
+              <small class="error" data-err="linkedin"></small>
+            </div>
+            <div class="field">
+              <label for="f-tiktok">تيك توك</label>
+              <input id="f-tiktok" name="tiktok" type="url" dir="ltr" maxlength="200" placeholder="https://">
+              <small class="error" data-err="tiktok"></small>
+            </div>
+          </div>
+
+          <div class="actions">
+            <p class="muted" id="contactHint"></p>
+            <button type="submit" class="btn btn-primary" id="saveContactsBtn">حفظ التعديلات</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Images -->
+      <section id="tab-images" class="panel" role="tabpanel" hidden>
+        <div class="panel-head">
+          <div>
+            <h2>الصور</h2>
+            <p class="muted">الصيغ المسموحة: JPG وPNG وWEBP، بحد أقصى 2 ميغابايت، وعرض لا يقل عن 400 بكسل.</p>
+          </div>
+        </div>
+        <div id="slots" class="slots"></div>
+      </section>
+
+    </main>
+
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+  <script src="config.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
